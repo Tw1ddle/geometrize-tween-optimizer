@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,user-scalable=yes,initial-scale=1,maximum-scale=1">
+		<title>Geometrize Tweens - tweening between sets of geometric primitives</title>
+		<meta name="author" content="Sam Twidale">
+		<meta name="description" content="Geometrizing images into geometric primitives.">
+		<meta name="keywords" content="geometrize, geometrizer, geometrized, geometrise, geometriser, geometrization, primitives, geometric, procedural, art, shapes, geometry">
+		<meta name="subject" content="Geometrize">
+		<meta name="robots" content="index, follow">
+		<link rel="canonical" href="http://tweenoptimizer.geometrize.co.uk/" />
+		<meta property="og:title" content="Geometrize">
+		<meta property="og:description" content="Geometrize images into geometric primitives.">
+		<meta property="og:site_name" content="Samcodes">
+		<meta name="twitter:title" content="Geometrize">
+		<meta name="twitter:description" content="Geometrize images into geometric primitives.">
+		<link rel="icon" type="image/x-icon" href="icon/favicon.png">
+		<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="icon/apple-touch-icon-precomposed.png">
+		<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="icon/favicon.ico"><![endif]-->
+		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+	</head>
+
+	<body>
+		<section id="header">
+			<h1><strong>Geometrize Tweens</strong></h1>
+			<h2>Tween between sets of geometric primitives</h2>
+			<p><a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a> is a <a href="https://github.com/Tw1ddle/geometrize" target="_blank">desktop app</a> and <a href="https://github.com/topics/geometrize" target="_blank">open source toolkit</a> for <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/" target="_blank">geometrizing</a> images into shapes. This tool is an aid for creating <a href="http://tweens.geometrize.co.uk/" target="_blank">visually appealing tweens</a> for shape data exported from <a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a>.</p>
+		</section>
+		
+		<hr class="rule"/>
+		
+		<section id="optimizer">
+			<div id="shapecanvascontainer">
+			</div>
+			
+			<div id="buttoncontainer" class="container stitched">
+				<button id="runpausebutton" class="button">Run</button>
+				<button id="stepbutton" class="button">Step</button>
+				<button id="resetbutton" class="button">Reset</button>
+			</div>
+			
+			<br/>
+			
+			<div id="costfunctionscontainer" class="container stitched">
+				<h2>Cost Function</h2>
+				
+				<select id="costfunctionpresets">
+					<option value="simpleweightings">Simple Weightings</option>
+				</select>
+				
+				<br/>
+				
+				<textarea id="costfunctiontextedit">
+				</textarea>
+			</div>
+			
+			<div id="optimizefunctionscontainer" class="container stitched">
+				<h2>Optimization Function</h2>
+				
+				<select id="optimizefunctionspresets">
+					<option value="randomswapping">Random Swapping</option>
+				</select>
+				
+				<br/>
+				
+				<textarea id="optimizefunctiontextedit">
+				</textarea>
+			</div>
+			
+			<br/>
+			
+			<div id="data1container" class="container stitched">
+				<h2>Dataset One</h2>
+				
+				<textarea id="data1textedit"></textarea>
+			</div>
+			
+			<div id="data2container" class="container stitched">
+				<h2>Dataset Two</h2>
+				
+				<textarea id="data2textedit"></textarea>
+			</div>
+			
+			<br/>
+			
+			<div id="resultscontainer" class="container stitched">
+				<h2>Results Data</h2>
+				
+				<textarea id="resultstextedit"></textarea>
+			</div>
+			
+			<div id="howitworks" class="container stitched">
+				<h2>How This Works</h2>
+				
+				<p>This page helps a user find visually appealing animations between circle shape data exported from Geometrize. Given two sets of exported circle shape data, which must each contain the
+				<i>same number of shapes</i>, the tool finds mappings between the two sets of shapes according to the cost and optimization functions provided above.</p>
+				
+				<p>The "run/pause" button starts or stops the continual optimization process. The "step" button completes a single optimization iteration. The "reset" button resets all settings and data back to their defaults.</p>
+				
+				<p>Cost and optimization functions can be changed via the preset dropdown menus, or by directly editing the hscript scripts in the text boxes above.</p>
+				
+				<p>For more information about the Geometrize desktop app, click <a href="http://www.geometrize.co.uk/" target="_blank">here</a>. Also see the <a href="http://tweens.geometrize.co.uk/" target="_blank">tweens demo</a> that uses data produced by this tool, and the <a href="https://twitter.com/Geometrizer" target="_blank">Twitter bot<a></a>.</p>
+				
+				<p>If you have suggestions, requests or comments, please <a href="" target="_blank">open an issue</a> or <a href="https://twitter.com/Sam_Twidale" target="_blank">contact me</a>.</p>
+			</div>
+		</section>
+		
+		<script src="js/optimizer.js"></script>
+	</body>
+</html>

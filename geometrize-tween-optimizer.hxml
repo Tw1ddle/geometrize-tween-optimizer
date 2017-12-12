@@ -1,0 +1,10 @@
+-main Main
+
+-lib hscript
+
+# Enable full dead code elimination
+-dce full
+
+--no-traces
+
+-js bin/js/optimizer.js
