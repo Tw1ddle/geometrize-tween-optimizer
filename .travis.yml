@@ -16,6 +16,10 @@ branches:
   only:
     - master
 
+# Install dependencies
+install:
+  - haxelib install hscript
+
 # Build the project
 script:
   - haxe geometrize-tween-optimizer.hxml
