@@ -1,0 +1,32 @@
+sudo: required
+dist: trusty
+
+language: haxe
+
+# Add encrypted API key
+env:
+  global:
+    - secure: MpxJgCqpv8c8CIwiaz5RjRXow/NshtU8IjzaiTJS50KkYhR8jUCZDKpvw0ngWZVtFVadZLmQRSjdyNBrosmEEqZmqE/Z8LF/uXb0bDmSkz9F509TVEQWxphuKAt4Yrahgq1EbW/zwAqU4BNIYR3U9lVIm5DLfUiNB1kD7iVIZuOJYlb+MScxlhVSRYUS6lCQBlGVoat0LYv2DRU6KM4ObjcPJ0arE9maCvMlaucPxoD2r4QBdONU5Mvu/Kk3Xnv7ELNHfVTG2v3tHsNHx4gfP1NRt6PVPN6XoIEFhjk9d9p17qn0IUKPxD2sVeRlJAiI1asGX5X4rvtLcftctghJ/cc3IsaPcgoji1w6EvARKR0IR6xd7VDS1RpgWCTQi64YnTnY/gu1E4HWEaju/7elsVBV7UgYZeKyQjTPFH1AYmrQaD+FLyjIG4eAI4owbTQ9NXUvy0WB0weaGFgD8rSAYSxuwhuvlD3QF+6Udcdh2iZGK1lRHMmg89y/G7rpceENXRqq8Lyu1nKpfFSpYVjepaajh1gOtiV+Ym3L84W4vU5BJ1eI+nblV7meqw10tku3HCkAcKy6OK6n1Aj8kQ1X6AqeYotQcO7YOcGAsj6OQ1wx5haFmcFu16C/+qoGS5EzCD99CuM5RZCIWb6WlPHIJoXGtD5ZhvLJhNac9jfzOTM=
+
+os:
+  - linux
+
+# Blacklist
+branches:
+  only:
+    - master
+
+# Build the project
+script:
+  - haxe geometrize-tween-optimizer.hxml
+
+# Deploy the generated documentation using Travis builtin GitHub Pages support
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: $TRAVIS_BUILD_DIR/bin/
+  github_token: $GITHUB_API_KEY
+  # Sets the CNAME file for the custom domain (not enough to just set it on the Github page settings)
+  fqdn: tweenoptimizer.geometrize.co.uk
+  on:
+    branch: master
