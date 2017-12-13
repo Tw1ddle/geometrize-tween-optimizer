@@ -5,76 +5,18 @@ import hscript.Parser;
 import reader.ShapeJsonReader;
 import shape.Shape;
 
-/*
-// Data describing one of the circles that makes up a geometrized image.
-typedef CircleData = {
-	index:Int,
-	type:Int,
-	x:Float,
-	y:Float,
-	radius:Float,
-	rgb:FlxColor,
-	alpha:Float
-}
-*/
-
- /*
-class CircleSprite extends FlxSprite {
-	public var startData:CircleData;
-	public var endData:CircleData;
-	
-	public var lerpStart:Float;
-	public var lerpEnd:Float;
-	public var radius(default, set):Float;
-	private static var gfxRadius:Int = 200;
-	
-	public function new(startData:CircleData, endData:CircleData) {
-		super(0, 0);
-		this.startData = startData;
-		this.endData = endData;
-		
-		if (FlxG.bitmap.get("circ") == null) {
-			makeGraphic(gfxRadius * 2, gfxRadius * 2, 0, false, "circ");
-			FlxSpriteUtil.drawCircle(this, -1, -1, gfxRadius);
-		} else {
-			loadGraphic("circ");
-		}
-		
-		interpolate(0);
-	}
-	
-	public function interpolate(t:Float):Void {
+class ShapeInterpolator {
+	public static function interpolate(firstData:Shape, secondData:Shape, outputData:Shape, lerpStart:Float, lerpEnd:Float, t:Float):Void {
 		var t = (t - lerpStart) / (lerpEnd - lerpStart);
-		
-		t = FlxMath.bound(t, 0, 1);
-		t = FlxEase.quadInOut(t);
-		
-		x = FlxMath.lerp(startData.x, endData.x, t);
-		y = FlxMath.lerp(startData.y, endData.y, t);
-		
-		color = FlxColor.interpolate(startData.rgb, endData.rgb, t);
-		radius = FlxMath.lerp(startData.radius, endData.radius, t);
-		alpha = FlxMath.lerp(startData.alpha, endData.alpha, t);
-	}
-	
-	private function set_radius(r:Float):Float {
-		if (this.radius == r) {
-			return r;
-		}
-		this.radius = r;
-		
-		var s:Float = r / gfxRadius;
-		scale.set(s, s);
-		
-		updateHitbox();
-		
-		offset.x += radius;
-		offset.y += radius;
-		
-		return r;
+		//t = FlxMath.bound(t, 0, 1);
+		//t = FlxEase.quadInOut(t);
+		//x = FlxMath.lerp(startData.x, endData.x, t);
+		//y = FlxMath.lerp(startData.y, endData.y, t);
+		//color = FlxColor.interpolate(startData.rgb, endData.rgb, t);
+		//radius = FlxMath.lerp(startData.radius, endData.radius, t);
+		//alpha = FlxMath.lerp(startData.alpha, endData.alpha, t);
 	}
 }
-*/
 
 /**
  * The main shape mapping/tween optimizer
@@ -84,9 +26,21 @@ class ShapeTweenOptimizer {
 	public var firstShapes(default, null):Array<Shape>;
 	public var secondShapes(default, null):Array<Shape>;
 	
-	public var currentShapes(get, never):Array<Shape>;
-	public function get_currentShapes():Array<Shape> {
-		return firstShapes; // TODO return a lerped set of shapes
+	public var currentShapes(default, null):Array<Shape>;
+	
+	private var transition(default, set):Float = 0;
+	private function set_transition(time:Float):Float {
+		this.transition = time;
+		
+		// TODO interpolate all the shape data to this point
+		/*		for (s in sprites) {
+			s.lerpStart = 0 + 0.0005 * i;
+			s.lerpEnd = 0.5 + 0.0005 * i;
+			i++;
+		}*/
+		//ShapeInterpolator.interpolate();
+		
+		return time;
 	}
 	
 	private var parser:Parser;
@@ -97,19 +51,29 @@ class ShapeTweenOptimizer {
 	public function new() {
 		firstShapes = [];
 		secondShapes = [];
+		currentShapes = [];
+		
 		parser = new hscript.Parser();
 		interpreter = new hscript.Interp();
 		costScript = "";
 		optimizationScript = "";
 	}
 	
-	public function step():Void {
+	public function optimize():Void {
 		if (firstShapes.length != secondShapes.length) {
 			throw "Shape datasets must each contain the same number of shapes";
 		}
 		
 		var parsedCode = parser.parseString(optimizationScript);
 		interpreter.execute(parsedCode);
+	}
+	
+	public function tween():Void {
+		// TODO tween the transition time, and by extension tween the shape positions
+		//FlxTween.tween(this, { transition: 1 }, 2, {type: FlxTween.PINGPONG, onComplete: function(_) {
+		//	OptimizeFunctions.optimize(shapeGroup);
+		//	calculateTotalScore();
+		//}});
 	}
 	
 	public function setCostScript(script:String):Void {
@@ -124,10 +88,12 @@ class ShapeTweenOptimizer {
 	
 	public function setDatasetOne(json:String):Void {
 		firstShapes = unpackShapeData(json);
+		setCurrentShapes();
 	}
 	
 	public function setDatasetTwo(json:String):Void {
 		secondShapes = unpackShapeData(json);
+		setCurrentShapes();
 	}
 	
 	public function calculateScore():Float {
@@ -162,5 +128,12 @@ class ShapeTweenOptimizer {
 	
 	private function unpackShapeData(json:Dynamic):Array<Shape> {
 		return ShapeJsonReader.shapesFromJson(json);
+	}
+	
+	private function setCurrentShapes():Void {
+		currentShapes = [];
+		for (shape in firstShapes) {
+			currentShapes.push(Reflect.copy(shape));
+		}
 	}
 }

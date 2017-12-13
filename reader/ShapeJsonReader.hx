@@ -24,6 +24,7 @@ class ShapeJsonReader {
 		
 		var shapes:Array<Shape> = [];
 		
+		var i = 0;
 		for (shapeData in shapeDatas) {
 			var colorArr:Array<Int> = shapeData.color;
 			
@@ -34,7 +35,9 @@ class ShapeJsonReader {
 			
 			var rgba:Int = (r << 24) + (g << 16) + (b << 8) + (a);
 			
-			shapes.push({ type: shapeData.type, color: rgba, data: shapeData.data });
+			shapes.push({ index: i, type: shapeData.type, color: rgba, data: shapeData.data });
+			
+			i++;
 		}
 		
 		return shapes;

@@ -42,28 +42,32 @@ class CanvasRenderer {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		
 		for (shape in shapes) {
-			switch(shape.type) {
-				case ShapeTypes.RECTANGLE:
-					drawRectangle(shape.data, shape.color);
-				case ShapeTypes.ROTATED_RECTANGLE:
-					drawRotatedRectangle(shape.data, shape.color);
-				case ShapeTypes.TRIANGLE:
-					drawTriangle(shape.data, shape.color);
-				case ShapeTypes.ELLIPSE:
-					drawEllipse(shape.data, shape.color);
-				case ShapeTypes.ROTATED_ELLIPSE:
-					drawRotatedEllipse(shape.data, shape.color);
-				case ShapeTypes.CIRCLE:
-					drawCircle(shape.data, shape.color);
-				case ShapeTypes.LINE:
-					drawLine(shape.data, shape.color);
-				case ShapeTypes.QUADRATIC_BEZIER:
-					drawQuadraticBezier(shape.data, shape.color);
-				case ShapeTypes.POLYLINE:
-					drawPolyline(shape.data, shape.color);
-				default:
-					throw "Encountered unsupported shape type";
-			}
+			renderShape(shape);
+		}
+	}
+	
+	private inline function renderShape(shape:Shape) {
+		switch(shape.type) {
+			case ShapeTypes.RECTANGLE:
+				drawRectangle(shape.data, shape.color);
+			case ShapeTypes.ROTATED_RECTANGLE:
+				drawRotatedRectangle(shape.data, shape.color);
+			case ShapeTypes.TRIANGLE:
+				drawTriangle(shape.data, shape.color);
+			case ShapeTypes.ELLIPSE:
+				drawEllipse(shape.data, shape.color);
+			case ShapeTypes.ROTATED_ELLIPSE:
+				drawRotatedEllipse(shape.data, shape.color);
+			case ShapeTypes.CIRCLE:
+				drawCircle(shape.data, shape.color);
+			case ShapeTypes.LINE:
+				drawLine(shape.data, shape.color);
+			case ShapeTypes.QUADRATIC_BEZIER:
+				drawQuadraticBezier(shape.data, shape.color);
+			case ShapeTypes.POLYLINE:
+				drawPolyline(shape.data, shape.color);
+			default:
+				throw "Encountered unsupported shape type";
 		}
 	}
 	

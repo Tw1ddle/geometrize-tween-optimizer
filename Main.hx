@@ -4,6 +4,7 @@ import js.Browser;
 import js.html.ButtonElement;
 import js.html.DivElement;
 import js.html.Element;
+import js.html.Event;
 import js.html.ParagraphElement;
 import js.html.SelectElement;
 import js.html.TextAreaElement;
@@ -91,9 +92,9 @@ class Main {
 	 * One-time initialization
 	 */
 	private inline function init():Void {
-		reset();
 		setupEventListeners();
 		populateSelectMenus();
+		reset();
 	}
 	
 	/**
@@ -108,6 +109,8 @@ class Main {
 		resetErrors();
 		resetScripts();
 		resetDatasets();
+		
+		step();
 	}
 	
 	private function resetErrors():Void {
@@ -119,11 +122,19 @@ class Main {
 	}
 	
 	private function resetScripts():Void {
-		// TODO
+		costFunctionPresetSelect.value = "Simpleweightings";
+		costFunctionPresetSelect.dispatchEvent(new Event("change"));
+		
+		optimizationFunctionPresetSelect.value = "Randomswapping";
+		optimizationFunctionPresetSelect.dispatchEvent(new Event("change"));
 	}
 	
 	private function resetDatasets():Void {
-		// TODO
+		datasetOnePresetSelect.value = "Cinderella";
+		datasetOnePresetSelect.dispatchEvent(new Event("change"));
+		
+		datasetTwoPresetSelect.value = "Windflowers";
+		datasetTwoPresetSelect.dispatchEvent(new Event("change"));
 	}
 	
 	/**
@@ -141,7 +152,6 @@ class Main {
 		costFunctionPresetSelect.addEventListener("change", function() {
 			var code = getPresetCostFunctionScript(costFunctionPresetSelect.value);
 			costFunctionTextArea.value = code;
-			trace(code);
 			setCostFunctionScript(code);
 		});
 		costFunctionTextArea.addEventListener("keypress", function() {
@@ -213,7 +223,7 @@ class Main {
 	 */
 	private function step():Void {
 		try {
-			optimizer.step();
+			optimizer.optimize();
 			generalErrorsText.textContent = "";
 			score = optimizer.calculateScore();
 			passes = passes + 1;

@@ -1,0 +1,20 @@
+var x = 0;
+
+// TODO convert to hscript
+// Calculate every possible switch, and greedily choose the best n switches
+//	public static function greedyBruteForceOptimize(shapes:FlxTypedGroup<CircleSprite>):Void {
+//		for (i in 0...shapes.length) {
+//			var shape = shapes.members[i];
+//
+//			for (j in 0...shapes.length) {
+//				var other = shapes.members[j];
+//
+//				var currentScore:Float = CostFunctions.calculateScore(shape.startData, shape.endData) + CostFunctions.calculateScore(other.startData, other.endData);
+//				var swappedScore:Float = CostFunctions.calculateScore(shape.startData, other.endData) + CostFunctions.calculateScore(shape.endData, other.startData);
+//
+//				if (swappedScore < currentScore) {
+//					swap(shape, other);
+//				}
+//			}
+//		}
+//	}
