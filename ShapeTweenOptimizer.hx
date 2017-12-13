@@ -98,7 +98,7 @@ class ShapeTweenOptimizer {
 		
 		var i = 0;
 		while (i < currentShapes.length) {
-			ShapeInterpolator.interpolate(firstShapes[i], secondShapes[i], currentShapes[i], i * 0.0005, 0.5 + i * 0.0005, transition);
+			ShapeInterpolator.interpolate(firstShapes[i], secondShapes[indexMapping[i]], currentShapes[i], i * 0.0005, 0.5 + i * 0.0005, transition);
 			i++;
 		}
 		
