@@ -1,22 +1,18 @@
 package;
 
-import haxe.Constraints.FlatEnum;
 import js.Browser;
 import js.html.CanvasElement;
 import js.html.CanvasRenderingContext2D;
 import js.html.DivElement;
-import util.FlxColor;
 import shape.Shape;
 import shape.ShapeTypes;
 import shape.abstracts.Circle;
 import shape.abstracts.Ellipse;
-import shape.abstracts.Line;
-import shape.abstracts.Polyline;
-import shape.abstracts.QuadraticBezier;
 import shape.abstracts.Rectangle;
 import shape.abstracts.RotatedEllipse;
 import shape.abstracts.RotatedRectangle;
 import shape.abstracts.Triangle;
+import util.FlxColor;
 
 /**
  * Code for rendering geometrized shapes using HTML5 Canvas.
