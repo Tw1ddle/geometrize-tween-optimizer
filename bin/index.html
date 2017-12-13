@@ -26,17 +26,27 @@
 		<section id="header">
 			<h1><strong>Geometrize Tweens</strong></h1>
 			<h2>Tween between sets of geometric primitives</h2>
-			<p><a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a> is a <a href="https://github.com/Tw1ddle/geometrize" target="_blank">desktop app</a> and <a href="https://github.com/topics/geometrize" target="_blank">open source toolkit</a> for <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/" target="_blank">geometrizing</a> images into shapes. This tool is an aid for creating <a href="http://tweens.geometrize.co.uk/" target="_blank">visually appealing tweens</a> for shape data exported from <a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a>.</p>
+			<p><a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a> is a <a href="https://github.com/Tw1ddle/geometrize" target="_blank">desktop app</a> and <a href="https://github.com/topics/geometrize" target="_blank">open source toolkit</a> for <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/" target="_blank">geometrizing</a> images into shapes. This tool helps you create <a href="http://tweens.geometrize.co.uk/" target="_blank">visually appealing tweens</a> between sets of shape data exported from <a href="http://www.geometrize.co.uk/" target="_blank">Geometrize</a>.</p>
 		</section>
 		
 		<hr class="rule"/>
 		
 		<section id="optimizer">
+			<div class="container stitched">
+				<div class="container"><h3>Score</h3><h3 id="scoretext">0</h3></div>
+				<div class="container"><h3>Passes</h3><h3 id="optimizationpassestext">0</h3></div>
+			</div>
+			
 			<div id="shapecanvascontainer">
 			</div>
 			
+			<br/>
+			
+			<p id="generalerrors" class="errortext"></p>
+			
+			<br/>
+			
 			<div id="buttoncontainer" class="container stitched">
-				<button id="runpausebutton" class="button">Run</button>
 				<button id="stepbutton" class="button">Step</button>
 				<button id="resetbutton" class="button">Reset</button>
 			</div>
@@ -47,40 +57,62 @@
 				<h2>Cost Function</h2>
 				
 				<select id="costfunctionpresets">
-					<option value="simpleweightings">Simple Weightings</option>
 				</select>
 				
 				<br/>
 				
-				<textarea id="costfunctiontextedit">
-				</textarea>
+				<textarea id="costfunctiontextedit"></textarea>
+				
+				<br/>
+				
+				<p id="costfunctionerrors" class="errortext"></p>
 			</div>
 			
 			<div id="optimizefunctionscontainer" class="container stitched">
 				<h2>Optimization Function</h2>
 				
 				<select id="optimizefunctionspresets">
-					<option value="randomswapping">Random Swapping</option>
 				</select>
 				
 				<br/>
 				
-				<textarea id="optimizefunctiontextedit">
-				</textarea>
+				<textarea id="optimizefunctiontextedit"></textarea>
+				
+				<br/>
+				
+				<p id="optimizationfunctionerrors" class="errortext"></p>
 			</div>
 			
 			<br/>
 			
-			<div id="data1container" class="container stitched">
+			<div id="datasetonecontainer" class="container stitched">
 				<h2>Dataset One</h2>
 				
-				<textarea id="data1textedit"></textarea>
+				<select id="datasetonepresets">
+				</select>
+				
+				<br/>
+				
+				<textarea id="datasetonetextedit"></textarea>
+				
+				<br/>
+				
+				<p id="datasetoneerrors" class="errortext"></p>
 			</div>
 			
-			<div id="data2container" class="container stitched">
+			<div id="datasettwocontainer" class="container stitched">
 				<h2>Dataset Two</h2>
 				
-				<textarea id="data2textedit"></textarea>
+				<select id="datasettwopresets">
+				</select>
+				
+				<br/>
+				
+				<textarea id="datasettwotextedit"></textarea>
+				
+				<br/>
+				
+				<p id="datasettwoerrors" class="errortext"></p>
 			</div>
 			
 			<br/>
@@ -88,22 +120,25 @@
 			<div id="resultscontainer" class="container stitched">
 				<h2>Results Data</h2>
 				
-				<textarea id="resultstextedit"></textarea>
+				<textarea id="resultsdatatextedit"></textarea>
 			</div>
 			
 			<div id="howitworks" class="container stitched">
-				<h2>How This Works</h2>
+				<h2>How It Works</h2>
 				
 				<p>This page helps a user find visually appealing animations between circle shape data exported from Geometrize. Given two sets of exported circle shape data, which must each contain the
 				<i>same number of shapes</i>, the tool finds mappings between the two sets of shapes according to the cost and optimization functions provided above.</p>
 				
-				<p>The "run/pause" button starts or stops the continual optimization process. The "step" button completes a single optimization iteration. The "reset" button resets all settings and data back to their defaults.</p>
+				<p>The "step" button completes a single iteration of the optimization algorithm. The "reset" button resets all settings and data back to their defaults.</p>
 				
-				<p>Cost and optimization functions can be changed via the preset dropdown menus, or by directly editing the hscript scripts in the text boxes above.</p>
+				<p>The cost and optimization functions can be changed via the preset dropdown menus, or by directly editing the hscript scripts in the text areas above.</p>
 				
-				<p>For more information about the Geometrize desktop app, click <a href="http://www.geometrize.co.uk/" target="_blank">here</a>. Also see the <a href="http://tweens.geometrize.co.uk/" target="_blank">tweens demo</a> that uses data produced by this tool, and the <a href="https://twitter.com/Geometrizer" target="_blank">Twitter bot<a></a>.</p>
+				<p>The results data, which maps the indices of shapes in dataset one to shapes in dataset two is written to the text area above each time the algorithm steps. When there are errors that prevent
+				the algorithm from stepping, these are reported in red next to the relevant text boxes.</p>
 				
-				<p>If you have suggestions, requests or comments, please <a href="" target="_blank">open an issue</a> or <a href="https://twitter.com/Sam_Twidale" target="_blank">contact me</a>.</p>
+				<p>Visit the <a href="http://www.geometrize.co.uk/" target="_blank">Geometrize website</a> for more information. Also see the <a href="http://tweens.geometrize.co.uk/" target="_blank">tweens demo</a> which uses data produced by this tool, and the Geometrize <a href="https://twitter.com/Geometrizer" target="_blank">Twitter bot</a>.</p>
+				
+				<p>If you have suggestions, requests or comments, please <a href="https://github.com/Tw1ddle/geometrize-tween-optimizer" target="_blank">open an issue</a> or <a href="https://twitter.com/Sam_Twidale" target="_blank">contact me</a>.</p>
 			</div>
 		</section>
 		

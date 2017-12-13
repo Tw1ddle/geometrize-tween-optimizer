@@ -10,3 +10,4 @@ export/*
 *.hash
 *.map
 bin/js/optimizer.js
+bin/css/style.min.min.css

@@ -1,10 +1,13 @@
 -main Main
 
+-lib actuate
+
+-D hscriptPos
 -lib hscript
 
 # Enable full dead code elimination
 -dce full
 
---no-traces
+#--no-traces
 
 -js bin/js/optimizer.js

@@ -8,8 +8,6 @@ import haxe.ds.ObjectMap;
  * Optimization methods for minimizing various measures of differences between shape properties.
  */
 class OptimizeFunctions {
-	public static var optimize:FlxTypedGroup<CircleSprite>->Void = greedyBruteForceOptimize;
-	
 	// Try randomly switching target shapes
 	public static function naiveRandomOptimize(shapes:FlxTypedGroup<CircleSprite>):Void {
 		var temp:CircleData = { index : 0, type: 0, x: 0, y: 0, radius: 0, rgb: 0, alpha: 0 };
@@ -48,6 +46,7 @@ class OptimizeFunctions {
 	// Calculate every possible switch, and choose the best n switches
 	
 	// TODO broken
+	/*
 	public static function optimalBruteForceOptimize(shapes:FlxTypedGroup<CircleSprite>):Void {
 		// Build map of shape->shape swapping improvements
 		var results = new ObjectMap<CircleSprite, Array<{ index:Int, improvement:Float }>>();
@@ -96,6 +95,7 @@ class OptimizeFunctions {
 			swap(shape, shapes.members[bestIndex]);
 		}
 	}
+	*/
 	
 	private static inline function swap(first:CircleSprite, second:CircleSprite):Void {
 		temp = first.endData;

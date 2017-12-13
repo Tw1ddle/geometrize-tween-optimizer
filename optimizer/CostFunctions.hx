@@ -1,14 +1,10 @@
 package optimizer;
 
-import flixel.math.FlxPoint;
-
 /**
  * Scoring methods for minimizing various measures of differences between shape properties.
  * The goal of the optimization code is to minimize the differences.
  */
 class CostFunctions {
-	public static var calculateScore:CircleData->CircleData->Float = naiveCalculateCost;
-	
 	/**
 	 * A simple/naive method to score differences between two shapes - simple weightings of the difference in area, distance and color.
 	 */

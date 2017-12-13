@@ -1,6 +1,5 @@
 package optimizer;
 
-import flixel.FlxG;
 import flixel.FlxSubState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxTween;
@@ -31,17 +30,6 @@ class OptimizeSubState extends FlxSubState {
 		setupTweens();
 		
 		add(shapeGroup);
-	}
-	
-	override public function update(dt:Float):Void {
-		super.update(dt);
-		if (FlxG.keys.justPressed.SPACE) {
-			shouldOptimize = !shouldOptimize;
-		}
-	}
-	
-	public function saveMapping():Void {
-		MappingSaver.save(sprites);
 	}
 	
 	private function setupSprites():Void {
@@ -84,15 +72,6 @@ class OptimizeSubState extends FlxSubState {
 	
 	private function interpolate(sprite:CircleSprite):Void {
 		sprite.interpolate(transition);
-	}
-	
-	private function calculateTotalScore():Float {
-		var total:Float = 0;
-		for (shape in shapeGroup) {
-			total += CostFunctions.calculateScore(shape.startData, shape.endData);
-		}
-		scoreUpdatedSignal.dispatch(total);
-		return total;
 	}
 	
 	private function set_transition(t:Float):Float {

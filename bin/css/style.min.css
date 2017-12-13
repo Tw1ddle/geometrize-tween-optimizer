@@ -152,6 +152,7 @@ input {
 
 textarea {
     min-width: 600px;
+    min-height: 300px;
     width: 33vw;
 }
 
@@ -202,15 +203,19 @@ option {
 }
 
 .shapecanvas {
-	margin: 10px 10px 10px 10px;
-	border-color: transparent;
-	border-style: solid;
-	border-width: 10px;
-	
-	image-rendering: optimizeSpeed;             /* Older versions of FF          */
-	image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
-	image-rendering: -webkit-optimize-contrast; /* Safari                        */
-	image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
-	image-rendering: pixelated;                 /* Awesome future-browsers       */
-	-ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+    margin: 10px;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 10px;
+
+    image-rendering: optimizeSpeed;             /* Older versions of FF          */
+    image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+    image-rendering: -webkit-optimize-contrast; /* Safari                        */
+    image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+    image-rendering: pixelated;                 /* Awesome future-browsers       */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+}
+
+.errortext {
+    color: red;
 }

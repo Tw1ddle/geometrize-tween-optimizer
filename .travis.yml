@@ -18,6 +18,7 @@ branches:
 
 # Install dependencies
 install:
+  - haxelib install actuate
   - haxelib install hscript
 
 # Build the project
