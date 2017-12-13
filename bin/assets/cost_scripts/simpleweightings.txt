@@ -1,22 +1,27 @@
-var x = 0;
+// Simple weighting-based cost/scoring function for two circles, a and b
+// Note this does not work for any shape type other than circles
 
-// TODO convert to hscript
-//public static function naiveCalculateCost(d1:CircleData, d2:CircleData):Float {
-//	var smallerRad:Float = Math.min(d1.radius, d2.radius);
-//	var largerRad:Float = Math.max(d1.radius, d2.radius);
-//	var areaRatio:Float = Math.pow(largerRad / smallerRad, 2);
-//
-//	var averageDiameter:Float = d1.radius + d2.radius;
-//	var startPos:FlxPoint = FlxPoint.get(d1.x, d1.y);
-//	var endPos:FlxPoint = FlxPoint.get(d2.x, d2.y);
-//	var centerDistance:Float = startPos.distanceTo(endPos);
-//	startPos.put();
-//	endPos.put();
-//	var distanceRatio:Float = centerDistance / averageDiameter;
-//
-//	var smallerColor:Float = Math.max(Math.min(d1.rgb.lightness, d2.rgb.lightness), 0.05);
-//	var largerColor:Float = Math.max(d1.rgb.lightness, d2.rgb.lightness);
-//	var colorRatio:Float = largerColor / smallerColor;
-//
-//	return areaRatio + distanceRatio + colorRatio;
-//}
+var x1 = a.data[0];
+var y1 = a.data[1];
+var r1 = a.data[2];
+
+var x2 = b.data[0];
+var y2 = b.data[1];
+var r2 = b.data[2];
+
+var color1 = a.color;
+var color2 = b.color;
+
+var smallerRad = Math.min(r1, r2);
+var largerRad = Math.max(r1, r2);
+var areaRatio = Math.pow(largerRad / smallerRad, 2);
+
+var averageDiameter = r1 + r2;
+var centerDistance = ScriptUtil.euclideanDistance(x1, y1, x2, y2);
+var distanceRatio = centerDistance / averageDiameter;
+
+var smallerColor = Math.max(Math.min(FlxColor.getLightness(color1), FlxColor.getLightness(color2)), 0.05);
+var largerColor = Math.max(FlxColor.getLightness(color1), FlxColor.getLightness(color2));
+var colorRatio = largerColor / smallerColor;
+
+return areaRatio + distanceRatio + colorRatio;

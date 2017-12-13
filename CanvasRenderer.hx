@@ -1,10 +1,11 @@
 package;
 
+import haxe.Constraints.FlatEnum;
 import js.Browser;
 import js.html.CanvasElement;
 import js.html.CanvasRenderingContext2D;
 import js.html.DivElement;
-import shape.Rgba;
+import util.FlxColor;
 import shape.Shape;
 import shape.ShapeTypes;
 import shape.abstracts.Circle;
@@ -39,14 +40,22 @@ class CanvasRenderer {
 	}
 	
 	public function render(shapes:Array<Shape>) {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = "black";
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		
+		ctx.save();
+		ctx.translate(100, 100);
 		
 		for (shape in shapes) {
 			renderShape(shape);
 		}
+		
+		ctx.restore();
 	}
 	
 	private inline function renderShape(shape:Shape) {
+		ctx.fillStyle = "rgba(" + shape.color.red + "," + shape.color.green + "," + shape.color.blue + "," + shape.alpha + ")";
+		
 		switch(shape.type) {
 			case ShapeTypes.RECTANGLE:
 				drawRectangle(shape.data, shape.color);
@@ -60,26 +69,16 @@ class CanvasRenderer {
 				drawRotatedEllipse(shape.data, shape.color);
 			case ShapeTypes.CIRCLE:
 				drawCircle(shape.data, shape.color);
-			case ShapeTypes.LINE:
-				drawLine(shape.data, shape.color);
-			case ShapeTypes.QUADRATIC_BEZIER:
-				drawQuadraticBezier(shape.data, shape.color);
-			case ShapeTypes.POLYLINE:
-				drawPolyline(shape.data, shape.color);
 			default:
 				throw "Encountered unsupported shape type";
 		}
 	}
 	
-	private inline function drawRectangle(g:Rectangle, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawRectangle(g:Rectangle, c:FlxColor) {
 		ctx.fillRect(g.x1, g.y1, g.x2 - g.x1, g.y2 - g.y1);
 	}
 	
-	private inline function drawRotatedRectangle(g:RotatedRectangle, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawRotatedRectangle(g:RotatedRectangle, c:FlxColor) {
 		ctx.save();
 		ctx.translate(g.x1 + (g.x2 - g.x1) / 2, g.y1 + (g.y2 - g.y1) / 2);
 		ctx.rotate(g.angle * (Math.PI/180));
@@ -87,9 +86,7 @@ class CanvasRenderer {
 		ctx.restore();
 	}
 	
-	private inline function drawTriangle(g:Triangle, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawTriangle(g:Triangle, c:FlxColor) {
 		ctx.beginPath();
 		ctx.moveTo(g.x1, g.y1);
 		ctx.lineTo(g.x2, g.y2);
@@ -98,57 +95,21 @@ class CanvasRenderer {
 		ctx.fill();
 	}
 	
-	private inline function drawEllipse(g:Ellipse, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawEllipse(g:Ellipse, c:FlxColor) {
 		ctx.beginPath();
 		ctx.ellipse(g.x, g.y, g.rx, g.ry, 0, 0, 360);
 		ctx.fill();
 	}
 	
-	private inline function drawRotatedEllipse(g:RotatedEllipse, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawRotatedEllipse(g:RotatedEllipse, c:FlxColor) {
 		ctx.beginPath();
 		ctx.ellipse(g.x, g.y, g.rx, g.ry, g.angle * (Math.PI/180), 0, 360);
 		ctx.fill();
 	}
 	
-	private inline function drawCircle(g:Circle, c:Rgba) {
-		ctx.fillStyle = c.toRgbaAttrib();
-		
+	private inline function drawCircle(g:Circle, c:FlxColor) {
 		ctx.beginPath();
 		ctx.arc(g.x, g.y, g.r, 0, 2 * Math.PI);
 		ctx.fill();
-	}
-	
-	private inline function drawLine(g:Line, c:Rgba) {
-		ctx.strokeStyle = c.toRgbaAttrib();
-		
-		ctx.beginPath();
-		ctx.moveTo(g.x1, g.y1);
-		ctx.lineTo(g.x2, g.y2);
-		ctx.stroke();
-	}
-	
-	private inline function drawQuadraticBezier(g:QuadraticBezier, c:Rgba) {
-		ctx.strokeStyle = c.toRgbaAttrib();
-		
-		ctx.beginPath();
-		ctx.moveTo(g.x1, g.y1);
-		ctx.quadraticCurveTo(g.cx, g.cy, g.x2, g.y2);
-		ctx.stroke();
-	}
-	
-	private inline function drawPolyline(g:Polyline, c:Rgba) {
-		ctx.strokeStyle = c.toRgbaAttrib();
-		
-		ctx.beginPath();
-		var i:Int = 0;
-		while (i < g.length - 1) {
-			ctx.lineTo(g.get(i), g.get(i + 1));
-			i += 2;
-		}
-		ctx.stroke();
 	}
 }

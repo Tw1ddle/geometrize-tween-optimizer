@@ -8,12 +8,12 @@ import js.html.Event;
 import js.html.ParagraphElement;
 import js.html.SelectElement;
 import js.html.TextAreaElement;
-import optimizer.ShapeTweenOptimizer;
+import shape.Shape;
 
 using StringTools;
 
 // Automatic HTML code completion, you need to point these to your HTML
-@:build(CodeCompletion.buildLocalFile("bin/index.html"))
+@:build(util.CodeCompletion.buildLocalFile("bin/index.html"))
 //@:build(CodeCompletion.buildUrl("http://shapetweens.geometrize.co.uk/"))
 class ID {}
 
@@ -101,7 +101,7 @@ class Main {
 	 * Reset everything to default settings
 	 */
 	private function reset():Void {
-		optimizer = new ShapeTweenOptimizer();
+		optimizer = new ShapeTweenOptimizer(this.render);
 		renderer = new CanvasRenderer(rendererContainer, 800, 800);
 		score = 0;
 		passes = 0;
@@ -232,15 +232,15 @@ class Main {
 			return;
 		}
 		
-		renderShapeDataToCanvas();
+		render(optimizer.currentShapes);
 		updateResultsData();
 	}
 	
 	/**
 	 * Renders the shape data to the canvas
 	 */
-	private function renderShapeDataToCanvas():Void {
-		renderer.render(optimizer.currentShapes);
+	public function render(shapes:Array<Shape>):Void {
+		renderer.render(shapes);
 	}
 	
 	/**

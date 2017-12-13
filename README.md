@@ -14,7 +14,7 @@ Made for use with shapes exported from [Geometrize](http://www.geometrize.co.uk/
  * Edit the core algorithm interactively via on-page text areas.
  * Save mappings between sets of shape data for use elsewhere.
  * View the shapes tweening in realtime.
- 
+
 # Usage
  * Open up the [demo](http://tweenoptimizer.geometrize.co.uk/) and inspect the sample shape data and optimization code.
  * Use different shape data by pasting Geometrize shape data JSON into the "Dataset" text areas.
@@ -22,4 +22,4 @@ Made for use with shapes exported from [Geometrize](http://www.geometrize.co.uk/
 
 # Notes
  * Created by [Sam Twidale](https://github.com/Tw1ddle) and [Joe Williamson](https://github.com/JoeCreates/).
- * Written using [Haxe](https://github.com/HaxeFoundation/haxe), [hscript](https://github.com/HaxeFoundation/hscript) and utilities from [HaxeFlixel](https://github.com/HaxeFlixel/flixel).
+ * Written using [Haxe](https://github.com/HaxeFoundation/haxe), [hscript](https://github.com/HaxeFoundation/hscript), [cloner](https://github.com/thomasuster/cloner) and utilities from [HaxeFlixel](https://github.com/HaxeFlixel/flixel).

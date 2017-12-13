@@ -1,6 +1,7 @@
 package reader;
 
 import haxe.Json;
+import util.FlxColor;
 import shape.Shape;
 
 /**
@@ -33,9 +34,10 @@ class ShapeJsonReader {
 			var b = Std.int(colorArr[2]) & 0xFF;
 			var a = Std.int(colorArr[3]) & 0xFF;
 			
-			var rgba:Int = (r << 24) + (g << 16) + (b << 8) + (a);
+			var color:FlxColor = FlxColor.fromRGB(r, g, b);
+			var alpha:Float = a / 255;
 			
-			shapes.push({ index: i, type: shapeData.type, color: rgba, data: shapeData.data });
+			shapes.push({ index: i, type: shapeData.type, color: color, alpha: alpha, data: shapeData.data });
 			
 			i++;
 		}

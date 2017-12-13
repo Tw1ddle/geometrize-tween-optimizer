@@ -17,9 +17,9 @@ using StringTools;
 @:access(reader.FileReader)
 class FolderReader {
 	/**
-	 * Reads all the files in a directory, and builds a type full of static arrays of training data populated by the files in that directory at compile time.
+	 * Reads all the files in a directory, and builds a type populated by strings, one per file in that directory at compile time.
 	 * @param directoryPath   File path to the directory to be scanned.
-	 * @return Array of string array fields containing the contents of the files in the directory.
+	 * @return Array of string fields containing the contents of the files in the directory.
 	 */
 	public static function build(directoryPath:String):Array<Field> {
 		var fields = Context.getBuildFields();

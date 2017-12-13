@@ -1,4 +1,4 @@
-package optimizer;
+package util;
 
 /**
  * Borrowed from HaxeFlixel (https://github.com/HaxeFlixel/flixel) - MIT license
@@ -574,6 +574,38 @@ abstract FlxColor(Int) from Int from UInt to Int to UInt
 		#end
 	}
 	
+	public static function redPart(color:FlxColor):Int {
+		return color.red;
+	}
+	
+	public static function greenPart(color:FlxColor):Int {
+		return color.green;
+	}
+	
+	public static function bluePart(color:FlxColor):Int {
+		return color.blue;
+	}
+	
+	public static function alphaPart(color:FlxColor):Int {
+		return color.alpha;
+	}
+	
+	public static function redFloatPart(color:FlxColor):Float {
+		return color.redFloat;
+	}
+	
+	public static function greenFloatPart(color:FlxColor):Float {
+		return color.greenFloat;
+	}
+	
+	public static function blueFloatPart(color:FlxColor):Float {
+		return color.blueFloat;
+	}
+	
+	public static function alphaFloatPart(color:FlxColor):Float {
+		return color.alphaFloat;
+	}
+	
 	private inline function get_red():Int
 	{
 		return (getThis() >> 16) & 0xff;
@@ -736,6 +768,10 @@ abstract FlxColor(Int) from Int from UInt to Int to UInt
 		return (maxColor() - minColor()) / brightness;
 	}
 	
+	public static function getLightness(color:FlxColor):Float {
+		return (getMaxColor(color) + getMinColor(color)) / 2;
+	}
+	
 	private inline function get_lightness():Float
 	{
 		return (maxColor() + minColor()) / 2;
@@ -765,9 +801,17 @@ abstract FlxColor(Int) from Int from UInt to Int to UInt
 		return Value;
 	}
 	
+	public static function getMaxColor(color:FlxColor):Float {
+		return color.maxColor();
+	}
+	
 	private inline function maxColor():Float
 	{
 		return Math.max(redFloat, Math.max(greenFloat, blueFloat));
+	}
+	
+	public static function getMinColor(color:FlxColor):Float {
+		return color.minColor();
 	}
 	
 	private inline function minColor():Float

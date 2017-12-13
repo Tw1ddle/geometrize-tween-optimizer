@@ -1,27 +1,15 @@
-var x = 0;
+// Naive approach that randomly swaps target shapes
+// Iterates through the arrays of data for the two datasets, selecting pairs of shapes at random,
+// and swaps these shapes if and only if it improves the fit of the shapes
 
-// TODO convert to hscript
-
-//private static inline function swap(first:CircleSprite, second:CircleSprite):Void {
-//	temp = first.endData;
-//	first.endData = second.endData;
-//	second.endData = temp;
-//}
-//private static var temp:CircleData = { index : 0, type: 0, x: 0, y: 0, radius: 0, rgb: 0, alpha: 0 };
-
-// Try randomly switching target shapes
-//	public static function naiveRandomOptimize(shapes:FlxTypedGroup<CircleSprite>):Void {
-//		var temp:CircleData = { index : 0, type: 0, x: 0, y: 0, radius: 0, rgb: 0, alpha: 0 };
-//		for (i in 0...10) {
-//			for (shape in shapes) {
+for (i in 0...10) {
+//	for (shape in shapes) {
 //				var other:CircleSprite = FlxG.random.getObject(shapes.members);
-//
 //				var currentScore:Float = CostFunctions.calculateScore(shape.startData, shape.endData) + CostFunctions.calculateScore(other.startData, other.endData);
 //				var swappedScore:Float = CostFunctions.calculateScore(shape.startData, other.endData) + CostFunctions.calculateScore(shape.endData, other.startData);
-//
+
 //				if (swappedScore < currentScore) {
 //					swap(shape, other);
 //				}
-//			}
-//		}
 //	}
+}
