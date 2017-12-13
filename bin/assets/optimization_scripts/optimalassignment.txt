@@ -1,4 +1,5 @@
-// Calculate every possible switch, and choose the best n switches
+// Measures the cost of every possible combination of shape indices
+// And chooses the
 
 // TODO broken
 //public static function optimalBruteForceOptimize(shapes:FlxTypedGroup<CircleSprite>):Void {

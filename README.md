@@ -11,7 +11,7 @@ Made for use with shapes exported from [Geometrize](http://www.geometrize.co.uk/
 
 # Features
  * Create visually appealing transitions between collections of circles.
- * Edit the core algorithm interactively via on-page text areas.
+ * Edit the core algorithm interactively via on-page script textedits.
  * Save mappings between sets of shape data for use elsewhere.
  * View the shapes tweening in realtime.
 

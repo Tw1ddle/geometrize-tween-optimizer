@@ -37,7 +37,7 @@ class ShapeJsonReader {
 			var color:FlxColor = FlxColor.fromRGB(r, g, b);
 			var alpha:Float = a / 255;
 			
-			shapes.push({ index: i, type: shapeData.type, color: color, alpha: alpha, data: shapeData.data });
+			shapes.push({ type: shapeData.type, color: color, alpha: alpha, data: shapeData.data });
 			
 			i++;
 		}

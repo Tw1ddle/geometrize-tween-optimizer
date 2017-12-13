@@ -225,7 +225,7 @@ class Main {
 		try {
 			optimizer.optimize();
 			generalErrorsText.textContent = "";
-			score = optimizer.calculateScore();
+			score = optimizer.calculateTotalScore();
 			passes = passes + 1;
 		} catch (e:Dynamic) {
 			generalErrorsText.textContent = Std.string(e);

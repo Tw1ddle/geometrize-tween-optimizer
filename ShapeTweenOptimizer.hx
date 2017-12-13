@@ -59,6 +59,7 @@ class ShapeTweenOptimizer {
 	private var renderCallback:Array<Shape>->Void;
 	public var firstShapes(default, null):Array<Shape>;
 	public var secondShapes(default, null):Array<Shape>;
+	private var indexMapping:Array<Int>;
 	
 	public var currentShapes(default, null):Array<Shape>;
 	
@@ -76,7 +77,8 @@ class ShapeTweenOptimizer {
 	}
 	
 	private var parser:Parser;
-	private var interpreter:Interp;
+	private var costInterpreter:Interp;
+	private var optimizerInterpreter:Interp;
 	private var costScript:String;
 	private var optimizationScript:String;
 	
@@ -84,13 +86,22 @@ class ShapeTweenOptimizer {
 		this.renderCallback = renderCallback;
 		firstShapes = [];
 		secondShapes = [];
+		indexMapping = [];
 		currentShapes = [];
 		
 		parser = new hscript.Parser();
-		interpreter = new hscript.Interp();
-		interpreter.variables.set("Math", Math);
-		interpreter.variables.set("ScriptUtil", ScriptUtil);
-		interpreter.variables.set("FlxColor", FlxColor);
+		costInterpreter = new hscript.Interp();
+		costInterpreter.variables.set("Math", Math);
+		costInterpreter.variables.set("ScriptUtil", ScriptUtil);
+		costInterpreter.variables.set("FlxColor", FlxColor);
+		
+		optimizerInterpreter = new hscript.Interp();
+		optimizerInterpreter.variables.set("Math", Math);
+		optimizerInterpreter.variables.set("ScriptUtil", ScriptUtil);
+		optimizerInterpreter.variables.set("FlxColor", FlxColor);
+		optimizerInterpreter.variables.set("Std", Std);
+		optimizerInterpreter.variables.set("costFunction", calculateScore);
+		
 		costScript = "";
 		optimizationScript = "";
 	}
@@ -100,8 +111,10 @@ class ShapeTweenOptimizer {
 			throw "Shape datasets must each contain the same number of shapes";
 		}
 		
-		var parsedCode = parser.parseString(optimizationScript);
-		interpreter.execute(parsedCode);
+		optimizerInterpreter.variables.set("firstShapes", firstShapes);
+		optimizerInterpreter.variables.set("secondShapes", secondShapes);
+		optimizerInterpreter.variables.set("indexMapping", indexMapping);
+		optimizerInterpreter.execute(parser.parseString(optimizationScript));
 		
 		Actuate.tween(this, 3, { transition: transition > 0.5 ? 0 : 1 }).onUpdate(function() {
 			this.transition = transition;
@@ -129,20 +142,24 @@ class ShapeTweenOptimizer {
 		setCurrentShapes();
 	}
 	
-	public function calculateScore():Float {
+	public function calculateScore(first:Shape, second:Shape):Float {
+		costInterpreter.variables.set("a", first);
+		costInterpreter.variables.set("b", second);
+		return costInterpreter.execute(parser.parseString(costScript));
+	}
+	
+	public function calculateTotalScore():Float {
 		var total:Float = 0;
 		var idx:Int = 0;
 		while (idx < currentShapes.length) {
-			interpreter.variables.set("a", firstShapes[idx]);
-			interpreter.variables.set("b", secondShapes[idx]);
-			total += interpreter.execute(parser.parseString(costScript));
+			total += calculateScore(firstShapes[idx], secondShapes[indexMapping[idx]]);
 			idx++;
 		}
 		return total;
 	}
 	
 	/**
-	 * Converts the current mapping from one set of shape indices to the other into a string.
+	 * Converts the current mapping from the first set of shape indices to the second as a string.
 	 * @return A string mapping the shape indices from the first dataset to the second.
 	 */
 	public function getShapeIndicesMapping():String {
@@ -150,7 +167,7 @@ class ShapeTweenOptimizer {
 		
 		var idx:Int = 0;
 		while (idx < currentShapes.length) {
-			data += Std.string(firstShapes[idx].index) + "," + Std.string(secondShapes[idx].index) + "\r\n";
+			data += idx + "," + Std.string(indexMapping[idx]) + "\r\n";
 			idx++;
 		}
 		
@@ -163,8 +180,12 @@ class ShapeTweenOptimizer {
 	
 	private function setCurrentShapes():Void {
 		currentShapes = [];
-		for (shape in firstShapes) {
-			currentShapes.push(util.Cloner.clone(shape));
+		indexMapping = [];
+		var i = 0;
+		while(i < firstShapes.length) {
+			currentShapes.push(util.Cloner.clone(firstShapes[i]));
+			indexMapping.push(i);
+			i++;
 		}
 	}
 }

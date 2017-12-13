@@ -7,7 +7,6 @@ import util.FlxColor;
  */
 @:keep
 typedef Shape = {
-	var index:Int; // Index of the shape
 	var type:ShapeTypes; // Shape type id
 	var color:FlxColor; // RGBA888 color
 	var alpha:Float; // Alpha 0-1
