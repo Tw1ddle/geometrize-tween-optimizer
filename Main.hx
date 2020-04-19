@@ -37,7 +37,7 @@ class ShapeDatasets {
  * @author Sam Twidale (http://www.geometrize.co.uk/)
  */
 class Main {
-	public static inline var demoUrl:String = "http://tweenoptimizer.geometrize.co.uk/"; // URL of the hosted website
+	public static inline var demoUrl:String = "https://tweenoptimizer.geometrize.co.uk/"; // URL of the hosted website
 	
 	private var score(get, set):Float;
 	private var passes(get, set):Int;
@@ -122,18 +122,18 @@ class Main {
 	}
 	
 	private function resetScripts():Void {
-		costFunctionPresetSelect.value = "Simpleweightings";
+		costFunctionPresetSelect.value = "simpleweightings";
 		costFunctionPresetSelect.dispatchEvent(new Event("change"));
 		
-		optimizationFunctionPresetSelect.value = "Randomswapping";
+		optimizationFunctionPresetSelect.value = "randomswapping";
 		optimizationFunctionPresetSelect.dispatchEvent(new Event("change"));
 	}
 	
 	private function resetDatasets():Void {
-		datasetOnePresetSelect.value = "Cinderella";
+		datasetOnePresetSelect.value = "cinderella";
 		datasetOnePresetSelect.dispatchEvent(new Event("change"));
 		
-		datasetTwoPresetSelect.value = "Windflowers";
+		datasetTwoPresetSelect.value = "windflowers";
 		datasetTwoPresetSelect.dispatchEvent(new Event("change"));
 	}
 	

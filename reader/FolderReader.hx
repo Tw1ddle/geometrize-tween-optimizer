@@ -33,15 +33,11 @@ class FolderReader {
 				
 				var file = files[i];
 				
-				// Take a filename e.g. cooking_utensils.txt, remove the extension and underscores and capitalize first letter of each word i.e. Cooking Utensils
-				var nameParts = file.split(".")[0].split("_");
-				var name = "";
-				for (i in 0...nameParts.length) {
-					var part = nameParts[i].charAt(0).toUpperCase() + nameParts[i].substring(1);
-					name += part;
-					if (i != nameParts.length - 1) {
-						name += " ";
-					}
+				// Take a filename e.g. cooking_utensils.txt, replace spaces with underscores, remove the extension and ensure it only contains characters a-zA-Z0-9
+				var name = file.split(".")[0].replace(" ", "_");
+				var sanitizer = new EReg("^[a-zA-Z0-9_]*$", "i");
+				if (!sanitizer.match(name)) {
+					throw "Files must have alphanumeric names";
 				}
 
 				var field = {
