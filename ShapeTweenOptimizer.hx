@@ -8,7 +8,6 @@ import reader.ShapeJsonReader;
 import shape.Shape;
 import shape.ShapeTypes;
 import shape.abstracts.Circle;
-import util.Cloner;
 import util.FlxColor;
 
 class ScriptUtil {
