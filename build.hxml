@@ -6,7 +6,7 @@
 -lib hscript
 
 # Enable full dead code elimination
--dce full
+-dce no
 
 #--no-traces
 
