@@ -9,6 +9,8 @@ import js.html.ParagraphElement;
 import js.html.SelectElement;
 import js.html.TextAreaElement;
 import shape.Shape;
+import util.CanvasRenderer;
+import util.ShapeTweenOptimizer;
 
 using StringTools;
 

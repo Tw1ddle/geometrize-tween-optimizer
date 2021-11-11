@@ -1,4 +1,4 @@
-package;
+package util;
 
 import js.Browser;
 import js.html.CanvasElement;
@@ -12,7 +12,6 @@ import shape.abstracts.Rectangle;
 import shape.abstracts.RotatedEllipse;
 import shape.abstracts.RotatedRectangle;
 import shape.abstracts.Triangle;
-import util.FlxColor;
 
 /**
  * Code for rendering geometrized shapes using HTML5 Canvas.
@@ -50,7 +49,7 @@ class CanvasRenderer {
 	}
 	
 	private inline function renderShape(shape:Shape) {
-		ctx.fillStyle = "rgba(" + shape.color.red + "," + shape.color.green + "," + shape.color.blue + "," + shape.alpha + ")";
+		ctx.fillStyle = "rgba(" + ((shape.color >> 16) & 0xff) + "," + ((shape.color >> 8) & 0xff) + "," + ((shape.color & 0xff)) + "," + ((shape.alpha)) + ")";
 		
 		switch(shape.type) {
 			case ShapeTypes.RECTANGLE:
@@ -70,11 +69,11 @@ class CanvasRenderer {
 		}
 	}
 	
-	private inline function drawRectangle(g:Rectangle, c:FlxColor) {
+	private inline function drawRectangle(g:Rectangle, c:Int) {
 		ctx.fillRect(g.x1, g.y1, g.x2 - g.x1, g.y2 - g.y1);
 	}
 	
-	private inline function drawRotatedRectangle(g:RotatedRectangle, c:FlxColor) {
+	private inline function drawRotatedRectangle(g:RotatedRectangle, c:Int) {
 		ctx.save();
 		ctx.translate(g.x1 + (g.x2 - g.x1) / 2, g.y1 + (g.y2 - g.y1) / 2);
 		ctx.rotate(g.angle * (Math.PI/180));
@@ -82,7 +81,7 @@ class CanvasRenderer {
 		ctx.restore();
 	}
 	
-	private inline function drawTriangle(g:Triangle, c:FlxColor) {
+	private inline function drawTriangle(g:Triangle, c:Int) {
 		ctx.beginPath();
 		ctx.moveTo(g.x1, g.y1);
 		ctx.lineTo(g.x2, g.y2);
@@ -91,19 +90,19 @@ class CanvasRenderer {
 		ctx.fill();
 	}
 	
-	private inline function drawEllipse(g:Ellipse, c:FlxColor) {
+	private inline function drawEllipse(g:Ellipse, c:Int) {
 		ctx.beginPath();
 		ctx.ellipse(g.x, g.y, g.rx, g.ry, 0, 0, 360);
 		ctx.fill();
 	}
 	
-	private inline function drawRotatedEllipse(g:RotatedEllipse, c:FlxColor) {
+	private inline function drawRotatedEllipse(g:RotatedEllipse, c:Int) {
 		ctx.beginPath();
 		ctx.ellipse(g.x, g.y, g.rx, g.ry, g.angle * (Math.PI/180), 0, 360);
 		ctx.fill();
 	}
 	
-	private inline function drawCircle(g:Circle, c:FlxColor) {
+	private inline function drawCircle(g:Circle, c:Int) {
 		ctx.beginPath();
 		ctx.arc(g.x, g.y, g.r, 0, 2 * Math.PI);
 		ctx.fill();

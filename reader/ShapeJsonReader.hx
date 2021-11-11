@@ -1,8 +1,8 @@
 package reader;
 
 import haxe.Json;
-import util.FlxColor;
 import shape.Shape;
+import util.FlxColor;
 
 /**
  * Reads JSON data that describes shapes and converts it into data structures for convenient access at runtime

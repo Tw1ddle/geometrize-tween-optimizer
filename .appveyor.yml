@@ -31,7 +31,7 @@ build_script:
   - cd $APPVEYOR_BUILD_FOLDER
   
   # Build the web demo
-  - haxe geometrize-tween-optimizer.hxml
+  - haxe build.hxml
 
 # Deploy the site to the GitHub pages branch
 deploy_script:

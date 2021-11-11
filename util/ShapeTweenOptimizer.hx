@@ -1,4 +1,4 @@
-package;
+package util;
 
 import hscript.Interp;
 import hscript.Parser;
@@ -10,78 +10,9 @@ import shape.ShapeTypes;
 import shape.abstracts.Circle;
 import util.FlxColor;
 
-class ScriptUtil {
-	public static function euclideanDistance(x1:Float, y1:Float, x2:Float, y2:Float):Float {
-		var dx = x1 - x2;
-		var dy = y1 - y2;
-		
-		var dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-		return dist;
-	}
-	
-	public static function greedyBruteForceOptimize(firstShapes:Array<Shape>, secondShapes:Array<Shape>, indexMapping:Array<Int>, costFunction:Shape->Shape->Float):Void {
-		for(i in 0...firstShapes.length) {
-			for(j in 0...firstShapes.length) {
-				var firstLeftIdx = i;
-				var secondLeftIdx = j;
-				var firstRightIdx = indexMapping[firstLeftIdx];
-				var secondRightIdx = indexMapping[secondLeftIdx];
-				
-				var firstLeft = firstShapes[firstLeftIdx];
-				var firstRight = secondShapes[firstRightIdx];
-				var secondLeft = firstShapes[secondLeftIdx];
-				var secondRight = secondShapes[secondRightIdx];
-				
-				var currentScore = costFunction(firstLeft, firstRight) + costFunction(secondLeft, secondRight);
-				var swappedScore = costFunction(firstLeft, secondRight) + costFunction(secondLeft, firstRight);
-				
-				if(swappedScore < currentScore) {
-					indexMapping[firstLeftIdx] = secondRightIdx;
-					indexMapping[secondLeftIdx] = firstRightIdx;
-				}
-			}
-		}
-	}
-	
-	public static function hungarianAlgorithm(firstShapes:Array<Shape>, secondShapes:Array<Shape>, indexMapping:Array<Int>, costFunction:Shape->Shape->Float):Void {
-		// TODO - https://en.wikipedia.org/wiki/Hungarian_algorithm
-		var costMatrix = [];
-	}
-}
-
-class ShapeInterpolator {
-	public static function interpolate(firstShape:Shape, secondShape:Shape, outShape:Shape, lerpStart:Float, lerpEnd:Float, t:Float):Void {
-		t = (t - lerpStart) / (lerpEnd - lerpStart);
-		t = bound(t, 0, 1);
-		
-		// NOTE only works on pairs of circles at the moment
-		if (firstShape.type == ShapeTypes.CIRCLE && secondShape.type == ShapeTypes.CIRCLE) {
-			var firstData:Circle = firstShape.data;
-			var secondData:Circle = secondShape.data;
-			
-			var outData:Circle = outShape.data;
-			
-			outData.x = cast lerp(cast firstData.x, cast secondData.x, t);
-			outData.y = cast lerp(cast firstData.y, cast secondData.y, t);
-			outData.r = cast lerp(cast firstData.r, cast secondData.r, t);
-			outShape.color = FlxColor.interpolate(firstShape.color, secondShape.color, t);
-			outShape.alpha = lerp(firstShape.alpha, secondShape.alpha, t);
-		}
-	}
-	
-	private static inline function lerp(a:Float, b:Float, ratio:Float):Float {
-		return a + ratio * (b - a);
-	}
-	
-	private static inline function bound(value:Float, min:Float, max:Float):Float {
-		var lowerBound:Float = value < min ? min : value;
-		return lowerBound > max ? max : lowerBound;
-	}
-}
-
 /**
  * The main shape mapping/tween optimizer
- * @author Sam Twidale (http://www.geometrize.co.uk/)
+ * @author Sam Twidale (https://www.geometrize.co.uk/)
  */
 class ShapeTweenOptimizer {
 	private var renderCallback:Array<Shape>->Void;
@@ -120,15 +51,8 @@ class ShapeTweenOptimizer {
 		parser = new hscript.Parser();
 		costInterpreter = new hscript.Interp();
 		costInterpreter.variables.set("Math", Math);
-		costInterpreter.variables.set("ScriptUtil", ScriptUtil);
-		costInterpreter.variables.set("FlxColor", FlxColor);
-		
-		optimizerInterpreter = new hscript.Interp();
-		optimizerInterpreter.variables.set("Math", Math);
-		optimizerInterpreter.variables.set("ScriptUtil", ScriptUtil);
-		optimizerInterpreter.variables.set("FlxColor", FlxColor);
-		optimizerInterpreter.variables.set("Std", Std);
-		optimizerInterpreter.variables.set("costFunction", calculateScore);
+		costInterpreter.variables.set("ScriptUtil", util.ScriptUtil);
+		//costInterpreter.variables.set("FlxColor", FlxColor);
 		
 		costScript = "";
 		optimizationScript = "";
@@ -139,9 +63,16 @@ class ShapeTweenOptimizer {
 			throw "Shape datasets must each contain the same number of shapes";
 		}
 		
+		optimizerInterpreter = new hscript.Interp();
+		optimizerInterpreter.variables.set("Math", Math);
+		optimizerInterpreter.variables.set("ScriptUtil", ScriptUtil);
+		//optimizerInterpreter.variables.set("FlxColor", FlxColor);
+		optimizerInterpreter.variables.set("Std", Std);
+		optimizerInterpreter.variables.set("costFunction", calculateScore);
 		optimizerInterpreter.variables.set("firstShapes", firstShapes);
 		optimizerInterpreter.variables.set("secondShapes", secondShapes);
 		optimizerInterpreter.variables.set("indexMapping", indexMapping);
+
 		optimizerInterpreter.execute(parser.parseString(optimizationScript));
 		
 		Actuate.tween(this, 3, { transition: transition > 0.5 ? 0 : 1 }).onUpdate(function() {

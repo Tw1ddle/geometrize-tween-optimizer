@@ -20,8 +20,8 @@ var averageDiameter = r1 + r2;
 var centerDistance = ScriptUtil.euclideanDistance(x1, y1, x2, y2);
 var distanceRatio = centerDistance / averageDiameter;
 
-var smallerColor = Math.max(Math.min(FlxColor.getLightness(color1), FlxColor.getLightness(color2)), 0.05);
-var largerColor = Math.max(FlxColor.getLightness(color1), FlxColor.getLightness(color2));
-var colorRatio = largerColor / smallerColor;
+//var smallerColor = Math.max(Math.min(FlxColor.getLightness(color1), FlxColor.getLightness(color2)), 0.05);
+//var largerColor = Math.max(FlxColor.getLightness(color1), FlxColor.getLightness(color2));
+//var colorRatio = largerColor / smallerColor;
 
-return areaRatio + distanceRatio + colorRatio;
+return areaRatio + distanceRatio; //+ colorRatio;

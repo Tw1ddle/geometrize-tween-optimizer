@@ -30,7 +30,7 @@
     "compounds": [
         {
             "name": "Build-And-Run-Demo",
-            "configurations": ["Demo-Firefox"],
+            "configurations": ["Demo-Chrome"],
             "preLaunchTask": "haxe: active configuration"
         }
     ]

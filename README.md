@@ -3,14 +3,14 @@
 [![Geometrize Tween Optimizer Build Status](https://ci.appveyor.com/api/projects/status/github/Tw1ddle/geometrize-tween-optimizer)](https://ci.appveyor.com/project/Tw1ddle/geometrize-tween-optimizer)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/LICENSE)
 
-A utility for creating appealing tweening animations between sets of circles. Run it now [in your browser](https://tweenoptimizer.geometrize.co.uk/).
+A utility for creating appealing tweening animations between sets of shapes. Run it now [in your browser](https://tweenoptimizer.geometrize.co.uk/).
 
 Made for use with shapes exported from [Geometrize](https://www.geometrize.co.uk/), a tool for recreating images using geometric primitives.
 
 [![Geometrized Tween Example](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/example_tween.gif?raw=true "Geometrized Tween Example")](https://www.geometrize.co.uk/)
 
 # Features
- * Create visually appealing transitions between collections of circles.
+ * Create visually appealing transitions between collections of shapes.
  * Edit the core algorithm interactively via on-page script textedits.
  * Save mappings between sets of shape data for use elsewhere.
  * View the shapes tweening in realtime.

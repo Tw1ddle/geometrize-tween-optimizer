@@ -1,5 +1,4 @@
 package shape;
-import util.FlxColor;
 
 /**
  * Compact representation of data about a Geometrize shape used by renderers
@@ -8,7 +7,7 @@ import util.FlxColor;
 @:keep
 typedef Shape = {
 	var type:ShapeTypes; // Shape type id
-	var color:FlxColor; // RGBA888 color
+	var color:Int; // RGBA888 color
 	var alpha:Float; // Alpha 0-1
 	var data:Array<Int>; // Geometry data, has a different structure per shape type
 }
