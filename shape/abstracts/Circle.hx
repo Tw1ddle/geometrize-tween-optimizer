@@ -2,7 +2,7 @@ package shape.abstracts;
 
 /**
  * Abstract for manipulating circle data.
- * @author Sam Twidale (http://samcodes.co.uk/)
+ * @author Sam Twidale (https://samcodes.co.uk/)
  */
 abstract Circle(Array<Int>) from Array<Int> {
 	public var x(get, set):Int;

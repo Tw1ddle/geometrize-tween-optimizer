@@ -12,7 +12,7 @@ using StringTools;
 
 /**
  * Utility for reading folders of text files at compile time
- * @author Sam Twidale (http://www.geometrize.co.uk/)
+ * @author Sam Twidale (https://www.geometrize.co.uk/)
  */
 @:access(reader.FileReader)
 class FolderReader {

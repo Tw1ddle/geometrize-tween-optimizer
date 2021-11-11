@@ -2,7 +2,7 @@ package shape.abstracts;
 
 /**
  * Abstract form anipulating rectangle data.
- * @author Sam Twidale (http://samcodes.co.uk/)
+ * @author Sam Twidale (https://samcodes.co.uk/)
  */
 abstract Rectangle(Array<Int>) from Array<Int> {
 	public var x1(get, set):Int;

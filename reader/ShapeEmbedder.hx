@@ -15,7 +15,7 @@ using StringTools;
 
 /**
  * Reads JSON shape data and embeds it in the program at compile time
- * @author Sam Twidale (http://samcodes.co.uk/)
+ * @author Sam Twidale (https://samcodes.co.uk/)
  */
 class ShapeEmbedder {
 	#if macro

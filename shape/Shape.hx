@@ -2,7 +2,7 @@ package shape;
 
 /**
  * Compact representation of data about a Geometrize shape used by renderers
- * @author Sam Twidale (http://samcodes.co.uk/)
+ * @author Sam Twidale (https://samcodes.co.uk/)
  */
 @:keep
 typedef Shape = {
