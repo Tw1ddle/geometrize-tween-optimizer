@@ -20,7 +20,9 @@ Made for use with shapes exported from [Geometrize](https://www.geometrize.co.uk
  * Use different shape data by pasting Geometrize shape data JSON into the "Dataset" text areas.
  * Edit the optimization code via the "cost function" and "optimization function" text areas.
  
- If you extend this code, remember that you must disable dead code elimination (''-dce no'' in the build .hxml), or else mark things you expose to the scripting engine with the ''@:keep'' annotation.
+If you extend this code, remember that you must disable dead code elimination (''-dce no'' in the build .hxml), or else mark things you expose to the scripting engine with the ''@:keep'' annotation.
+
+Also remember that you can't expose abstracts to hscript. One workaround is to write a wrapper for your abstract that exposes the functions you need to hscript.
 
 # Notes
  * Created by [Sam Twidale](https://github.com/Tw1ddle) and [Joe Williamson](https://github.com/JoeCreates/).
