@@ -19,6 +19,8 @@ Made for use with shapes exported from [Geometrize](https://www.geometrize.co.uk
  * Open up the [demo](https://tweenoptimizer.geometrize.co.uk/) and inspect the sample shape data and optimization code.
  * Use different shape data by pasting Geometrize shape data JSON into the "Dataset" text areas.
  * Edit the optimization code via the "cost function" and "optimization function" text areas.
+ 
+ If you extend this code, remember that you must disable dead code elimination (''-dce no'' in the build .hxml), or else mark things you expose to the scripting engine with the ''@:keep'' annotation.
 
 # Notes
  * Created by [Sam Twidale](https://github.com/Tw1ddle) and [Joe Williamson](https://github.com/JoeCreates/).
