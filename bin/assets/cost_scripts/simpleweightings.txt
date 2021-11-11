@@ -24,4 +24,4 @@ var smallerColor = Math.max(Math.min(ColorHelpers.getLightness(color1), ColorHel
 var largerColor = Math.max(ColorHelpers.getLightness(color1), ColorHelpers.getLightness(color2));
 var colorRatio = largerColor / smallerColor;
 
-return areaRatio + distanceRatio; //+ colorRatio;
+return areaRatio + distanceRatio + colorRatio;
