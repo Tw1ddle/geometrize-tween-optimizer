@@ -49,6 +49,7 @@ class ShapeTweenOptimizer {
 		costInterpreter = new hscript.Interp();
 		costInterpreter.variables.set("Math", Math);
 		costInterpreter.variables.set("ScriptUtil", util.ScriptUtil);
+		costInterpreter.variables.set("ColorHelpers", ColorHelpers);
 		
 		costScript = "";
 		optimizationScript = "";
@@ -63,6 +64,7 @@ class ShapeTweenOptimizer {
 		optimizerInterpreter.variables.set("Math", Math);
 		optimizerInterpreter.variables.set("ScriptUtil", ScriptUtil);
 		optimizerInterpreter.variables.set("Std", Std);
+		optimizerInterpreter.variables.set("ColorHelpers", ColorHelpers);
 		optimizerInterpreter.variables.set("costFunction", calculateScore);
 		optimizerInterpreter.variables.set("firstShapes", firstShapes);
 		optimizerInterpreter.variables.set("secondShapes", secondShapes);
