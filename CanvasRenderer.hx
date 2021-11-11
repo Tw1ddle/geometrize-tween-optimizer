@@ -16,7 +16,7 @@ import util.FlxColor;
 
 /**
  * Code for rendering geometrized shapes using HTML5 Canvas.
- * @author Sam Twidale (http://www.geometrize.co.uk/)
+ * @author Sam Twidale (https://www.geometrize.co.uk/)
  */
 @:keep
 class CanvasRenderer {

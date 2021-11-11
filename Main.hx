@@ -14,7 +14,7 @@ using StringTools;
 
 // Automatic HTML code completion, you need to point these to your HTML
 @:build(util.CodeCompletion.buildLocalFile("bin/index.html"))
-//@:build(CodeCompletion.buildUrl("http://shapetweens.geometrize.co.uk/"))
+//@:build(CodeCompletion.buildUrl("https://tweenoptimizer.geometrize.co.uk/"))
 class ID {}
 
 @:build(reader.FolderReader.build("bin/assets/cost_scripts"))
@@ -34,7 +34,7 @@ class ShapeDatasets {
 
 /**
  * A shape tween optimization tool
- * @author Sam Twidale (http://www.geometrize.co.uk/)
+ * @author Sam Twidale (https://www.geometrize.co.uk/)
  */
 class Main {
 	public static inline var demoUrl:String = "https://tweenoptimizer.geometrize.co.uk/"; // URL of the hosted website

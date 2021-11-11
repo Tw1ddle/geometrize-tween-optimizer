@@ -1,13 +1,13 @@
-[![Project logo](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/logo.png?raw=true "Geometrize Tween Optimizer Project logo")](http://www.geometrize.co.uk/)
+[![Project logo](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/logo.png?raw=true "Geometrize Tween Optimizer Project logo")](https://www.geometrize.co.uk/)
 
-[![Build Status](https://img.shields.io/travis/Tw1ddle/geometrize-tween-optimizer.svg?style=flat-square)](https://travis-ci.org/Tw1ddle/geometrize-tween-optimizer)
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/LICENSE)
+[![Geometrize Tween Optimizer Build Status](https://ci.appveyor.com/api/projects/status/github/Tw1ddle/geometrize-tween-optimizer)](https://ci.appveyor.com/project/Tw1ddle/geometrize-tween-optimizer)
+[![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/LICENSE)
 
-A utility for creating appealing tweening animations between sets of circles. Run it now [in your browser](http://tweenoptimizer.geometrize.co.uk/).
+A utility for creating appealing tweening animations between sets of circles. Run it now [in your browser](https://tweenoptimizer.geometrize.co.uk/).
 
-Made for use with shapes exported from [Geometrize](http://www.geometrize.co.uk/), a tool for recreating images using geometric primitives.
+Made for use with shapes exported from [Geometrize](https://www.geometrize.co.uk/), a tool for recreating images using geometric primitives.
 
-[![Geometrized Tween Example](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/example_tween.gif?raw=true "Geometrized Tween Example")](http://www.geometrize.co.uk/)
+[![Geometrized Tween Example](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/example_tween.gif?raw=true "Geometrized Tween Example")](https://www.geometrize.co.uk/)
 
 # Features
  * Create visually appealing transitions between collections of circles.
@@ -16,7 +16,7 @@ Made for use with shapes exported from [Geometrize](http://www.geometrize.co.uk/
  * View the shapes tweening in realtime.
 
 # Usage
- * Open up the [demo](http://tweenoptimizer.geometrize.co.uk/) and inspect the sample shape data and optimization code.
+ * Open up the [demo](https://tweenoptimizer.geometrize.co.uk/) and inspect the sample shape data and optimization code.
  * Use different shape data by pasting Geometrize shape data JSON into the "Dataset" text areas.
  * Edit the optimization code via the "cost function" and "optimization function" text areas.
 
