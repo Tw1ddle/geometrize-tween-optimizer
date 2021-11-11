@@ -6,9 +6,6 @@ import motion.Actuate;
 import motion.easing.Quad;
 import reader.ShapeJsonReader;
 import shape.Shape;
-import shape.ShapeTypes;
-import shape.abstracts.Circle;
-import util.FlxColor;
 
 /**
  * The main shape mapping/tween optimizer
@@ -52,7 +49,6 @@ class ShapeTweenOptimizer {
 		costInterpreter = new hscript.Interp();
 		costInterpreter.variables.set("Math", Math);
 		costInterpreter.variables.set("ScriptUtil", util.ScriptUtil);
-		//costInterpreter.variables.set("FlxColor", FlxColor);
 		
 		costScript = "";
 		optimizationScript = "";
@@ -66,7 +62,6 @@ class ShapeTweenOptimizer {
 		optimizerInterpreter = new hscript.Interp();
 		optimizerInterpreter.variables.set("Math", Math);
 		optimizerInterpreter.variables.set("ScriptUtil", ScriptUtil);
-		//optimizerInterpreter.variables.set("FlxColor", FlxColor);
 		optimizerInterpreter.variables.set("Std", Std);
 		optimizerInterpreter.variables.set("costFunction", calculateScore);
 		optimizerInterpreter.variables.set("firstShapes", firstShapes);
