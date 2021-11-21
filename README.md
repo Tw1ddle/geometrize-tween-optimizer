@@ -1,7 +1,7 @@
 [![Project logo](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/screenshots/logo.png?raw=true "Geometrize Tween Optimizer Project logo")](https://www.geometrize.co.uk/)
 
-[![Geometrize Tween Optimizer Build Status](https://ci.appveyor.com/api/projects/status/github/Tw1ddle/geometrize-tween-optimizer)](https://ci.appveyor.com/project/Tw1ddle/geometrize-tween-optimizer)
 [![License](https://img.shields.io/:license-mit-blue.svg?style=flat-square)](https://github.com/Tw1ddle/geometrize-tween-optimizer/blob/master/LICENSE)
+[![Geometrize Tween Optimizer Build Status](https://ci.appveyor.com/api/projects/status/github/Tw1ddle/geometrize-tween-optimizer)](https://ci.appveyor.com/project/Tw1ddle/geometrize-tween-optimizer)
 
 A utility for creating appealing tweening animations between sets of shapes. Run it now [in your browser](https://tweenoptimizer.geometrize.co.uk/).
 
