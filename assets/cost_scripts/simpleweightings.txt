@@ -1,0 +1,27 @@
+// Simple weighting-based cost/scoring function for two circles, a and b
+// Note this does not work for any shape type other than circles
+
+var x1 = a.data[0];
+var y1 = a.data[1];
+var r1 = a.data[2];
+
+var x2 = b.data[0];
+var y2 = b.data[1];
+var r2 = b.data[2];
+
+var color1 = a.color;
+var color2 = b.color;
+
+var smallerRad = Math.min(r1, r2);
+var largerRad = Math.max(r1, r2);
+var areaRatio = Math.pow(largerRad / smallerRad, 2);
+
+var averageDiameter = r1 + r2;
+var centerDistance = ScriptUtil.euclideanDistance(x1, y1, x2, y2);
+var distanceRatio = centerDistance / averageDiameter;
+
+var smallerColor = Math.max(Math.min(ColorHelpers.getLightness(color1), ColorHelpers.getLightness(color2)), 0.05);
+var largerColor = Math.max(ColorHelpers.getLightness(color1), ColorHelpers.getLightness(color2));
+var colorRatio = largerColor / smallerColor;
+
+return areaRatio + distanceRatio + colorRatio;

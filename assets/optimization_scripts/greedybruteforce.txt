@@ -1,0 +1,4 @@
+// Calculate every possible switch, and greedily choose the best n switches
+// Very slow, so implemented in Haxe instead of hscript
+
+ScriptUtil.greedyBruteForceOptimize(firstShapes, secondShapes, indexMapping, costFunction);

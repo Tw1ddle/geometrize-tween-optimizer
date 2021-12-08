@@ -1,0 +1,7 @@
+// Measures the cost of every possible combination of shapes,
+// creating a cost matrix, solves the linear sum assignment problem,
+// finding the optimal mapping for the shapes
+
+// NOT IMPLEMENTED YET! It will be very slow on the js target - https://en.wikipedia.org/wiki/Hungarian_algorithm
+
+ScriptUtil.hungarianAlgorithm(firstShapes, secondShapes, indexMapping, costFunction);

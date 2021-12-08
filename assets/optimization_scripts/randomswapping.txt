@@ -1,0 +1,23 @@
+// Naive approach that randomly swaps target shapes
+// Picks random pairs from the sets of shapes and tries swapping them
+// Only swaps shapes when this improves the overall fit of the shapes according to the cost/scoring function
+
+for(i in 0...500) {
+	var firstLeftIdx = Std.int(Math.random() * firstShapes.length - 1);
+	var secondLeftIdx = Std.int(Math.random() * firstShapes.length - 1);
+	var firstRightIdx = indexMapping[firstLeftIdx];
+	var secondRightIdx = indexMapping[secondLeftIdx];
+	
+	var firstLeft = firstShapes[firstLeftIdx];
+	var firstRight = secondShapes[firstRightIdx];
+	var secondLeft = firstShapes[secondLeftIdx];
+	var secondRight = secondShapes[secondRightIdx];
+	
+	var currentScore = costFunction(firstLeft, firstRight) + costFunction(secondLeft, secondRight);
+	var swappedScore = costFunction(firstLeft, secondRight) + costFunction(secondLeft, firstRight);
+	
+	if(swappedScore < currentScore) {
+		indexMapping[firstLeftIdx] = secondRightIdx;
+		indexMapping[secondLeftIdx] = firstRightIdx;
+	}
+}
